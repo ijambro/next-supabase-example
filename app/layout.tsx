@@ -22,6 +22,10 @@ export default function RootLayout({
         <main className="min-h-screen flex flex-col items-center">
           {children}
         </main>
+
+        <footer className="w-full h-16 bg-teal-300 border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs bottom-0">
+          <p>Powered by Supabase, with some help from Jake</p>
+        </footer>
       </body>
     </html>
   );
