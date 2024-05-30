@@ -1,31 +1,30 @@
-"use client";
-
-import { createClient } from "@/utils/supabase/client";
-import { useEffect, useState } from "react";
+/**
+ * Server component
+ *
+ * This means it gets executed / hydrated on the server,
+ * where it can perform async calls without needing useState/useEffect to load data.
+ */
 import HomeButton from "@/components/HomeButton";
 import Note from "@/components/Note";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Page() {
-  console.log("[client] Rendering app/notes-client");
+export default async function Page() {
+  console.log("[server] Rendering app/notes");
 
-  const [notes, setNotes] = useState<any[] | null>(null);
   const supabase = createClient();
+  const result = await supabase.from("notes").select();
+  console.log("[server] Rendering app/notes with data", result);
 
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await supabase.from("notes").select();
-      console.log("[client] Rendering app/notes-client with data", data);
-
-      setNotes(data);
-    };
-    getData();
-  }, []);
+  let notes;
+  if (!result.error && result.data) {
+    notes = result.data;
+  }
 
   return (
     <>
       <HomeButton />
 
-      <div className="bg-teal-400 w-full h-full p-4 flex justify-around ">
+      <div className="bg-purple-400 w-full h-full p-4 flex justify-around ">
         {notes
           ? notes.map((n) => (
               <Note
