@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
+import LinkButton from "@/components/LinkButton";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -19,13 +20,28 @@ export default async function ProtectedPage() {
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div className="w-full">
-        <div className="py-6 font-bold bg-purple-950 text-center">
+        <div className="py-6 font-bold bg-purple-950 text-center text-white">
           This is a protected page that you can only see as an authenticated
           user
         </div>
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
             <DeployButton />
+            <LinkButton href="/notes">
+              <svg
+                aria-label="Vercel logomark"
+                role="img"
+                viewBox="0 0 74 64"
+                className="h-4 w-4 mr-2"
+              >
+                <path
+                  d="M37.5896 0.25L74.5396 64.25H0.639648L37.5896 0.25Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              Notes (Server)
+            </LinkButton>
+            <LinkButton href="/notes-client" label="Notes (Client)" />
             <AuthButton />
           </div>
         </nav>
