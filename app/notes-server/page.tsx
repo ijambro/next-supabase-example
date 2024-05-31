@@ -25,7 +25,7 @@ export default async function Page() {
     <>
       <HomeButton />
 
-      <div className="bg-purple-400 w-full h-full p-4 flex justify-around ">
+      <div className="bg-purple-400 w-full h-full p-4 flex flex-wrap justify-around ">
         {notes
           ? notes.map((n) => (
               <Note
