@@ -9,7 +9,7 @@ interface Props {
 
 export default function Note({ id, created, title, body }: Props) {
   return (
-    <div key={id} className="border-gray-400 w-1/4">
+    <div className="border-gray-400 w-1/4">
       <div className="bg-gray-200 font-semibold rounded-t-xl px-4 py-1">
         {title}
       </div>
